@@ -4,8 +4,9 @@ import { CommonModule } from '@angular/common';
 import { AccessControlComponent } from './access-control.component';
 import { RouterModule } from '@angular/router';
 import { Routes } from './access-control.routing';
+import { PermissionsComponent } from './permissions/permissions.component';
 @NgModule({
     imports: [CommonModule, SharedModule, RouterModule.forChild(Routes)],
-    declarations: [AccessControlComponent],
+    declarations: [AccessControlComponent, PermissionsComponent],
 })
 export class AccessControlModule {}
