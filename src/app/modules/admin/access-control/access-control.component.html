@@ -69,5 +69,5 @@
     [position]="'right'"
     #permissionDrawer
 >
-    <permissions></permissions>
+    <permissions (closeDrawer)="permissionDrawer.close()"></permissions>
 </fuse-drawer>

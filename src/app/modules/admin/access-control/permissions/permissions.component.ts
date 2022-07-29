@@ -1,8 +1,9 @@
+import { EventEmitter } from '@angular/core';
 /* eslint-disable @typescript-eslint/semi */
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable @angular-eslint/component-selector */
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'permissions',
@@ -10,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./permissions.component.scss'],
 })
 export class PermissionsComponent implements OnInit {
+    @Output() closeDrawer: EventEmitter<any> = new EventEmitter();
     form!: FormGroup;
     constructor(private fb: FormBuilder) {}
 
@@ -21,6 +23,32 @@ export class PermissionsComponent implements OnInit {
         this.form = this.fb.group({
             userName: ['', Validators.required],
             password: ['', Validators.required],
+            read: [false, Validators.required],
+            write: [false, Validators.required],
+            update: [false, Validators.required],
+            delete: [false, Validators.required],
         });
+    }
+
+    onCheckAll(e: any) {
+        if (e.checked) {
+            this.form.patchValue({
+                read: true,
+                write: true,
+                update: true,
+                delete: true,
+            });
+        } else {
+            this.form.patchValue({
+                read: false,
+                write: false,
+                update: false,
+                delete: false,
+            });
+        }
+    }
+
+    onDrawerClose() {
+        this.closeDrawer.emit();
     }
 }
