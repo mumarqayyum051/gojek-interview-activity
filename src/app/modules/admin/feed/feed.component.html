@@ -1,5 +1,10 @@
 <div class="m-3">
-    <button mat-raised-button color="primary" class="mb-2">
+    <button
+        mat-raised-button
+        color="primary"
+        class="mb-2"
+        (click)="createPostModal()"
+    >
         Post
         <mat-icon>add</mat-icon>
     </button>
@@ -58,3 +63,24 @@
         </mat-card>
     </div>
 </div>
+
+<ng-template #createPost>
+    <div mat-dialog-title>Create Post</div>
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <textarea
+                placeholder="Post Description"
+                rows="3"
+                matInput
+                class="w-full"
+                matTextareaAutosize
+            ></textarea>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary">
+            Post
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</ng-template>
